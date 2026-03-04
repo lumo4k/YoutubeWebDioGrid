@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #0f0f0f;
+}
+
+/* 1. Layout Principal */
+.app-container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar content";
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 56px 1fr;
+    height: 100vh;
+}
+
+/* 2. Header (Refatorado para Grid) */
+.header {
+    grid-area: header;
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header__left {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Botão de Ícone (Refatorado para Grid) */
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    /* Centralização perfeita com Grid */
+    color: inherit;
+}
+
+.icon-btn:hover {
+    background-color: #f2f2f2;
+}
+
+/* 3. Sidebar (Refatorado para Grid) */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #ffffff;
+    overflow-y: auto;
+    padding-top: 12px;
+}
+
+.sidebar__group {
+    list-style: none;
+    display: grid;
+    grid-auto-rows: max-content;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.sidebar__link {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    /* Coluna do ícone e coluna do texto */
+    align-items: center;
+    gap: 24px;
+    padding: 0 24px;
+    height: 40px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+}
+
+.sidebar__link:hover {
+    background-color: #f2f2f2;
+}
+
+.sidebar__item.active .sidebar__link {
+    background-color: #f2f2f2;
+    font-weight: 700;
+}
+
+.sidebar__icon {
+    display: grid;
+    place-items: center;
+}
+
+.sidebar__text {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 4. Content Area */
+.content {
+    grid-area: content;
+    padding: 24px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    align-content: start;
+}
+
+/* Estrutura da Search Bar */
+.search-container {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    /* Coluna para o form e coluna para o botão de voz */
+    gap: 8px;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: 1fr 64px;
+    /* Input ocupa o resto, botão tem largura fixa */
+    border: 1px solid #ccc;
+    border-radius: 40px 0 0 40px;
+    /* Arredondamento apenas na esquerda do grupo */
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.search-input {
+    border: none;
+    padding: 0 16px;
+    height: 40px;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    background: transparent;
+}
+
+.search-btn {
+    display: grid;
+    place-items: center;
+    background-color: #f8f8f8;
+    border: none;
+    border-left: 1px solid #ccc;
+    cursor: pointer;
+    height: 40px;
+}
+
+.search-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.voice-btn {
+    display: grid;
+    place-items: center;
+    background-color: #f8f8f8;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.voice-btn:hover {
+    background-color: #e5e5e5;
+}
+
+/* Container da Direita */
+.header__right {
+    display: grid;
+    grid-template-columns: repeat(2, 40px) 60px;
+    /* 2 botões de 40px + área do perfil */
+    align-items: center;
+    gap: 8px;
+    padding-left: 8px;
+}
+
+/* Container da imagem de perfil (Grid para centralização) */
+.user-profile {
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.profile-img-container {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ddd;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 1. Container Principal de Vídeos */
+.content {
+    grid-area: content;
+    padding: 24px 16px;
+    display: grid;
+    /* Cria colunas automáticas que se ajustam entre 250px e 1fr */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px 16px;
+    /* Espaço maior entre as linhas do que entre colunas */
+    align-content: start;
+    overflow-y: auto;
+}
+
+/* 2. O Card do Vídeo (Sub-grid Vertical) */
+.video-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    /* Linha da thumb e linha dos detalhes */
+    gap: 12px;
+    padding: 16px;
+    cursor: pointer;
+}
+
+/* 3. Thumbnail Area (Grid para posicionar o tempo do vídeo) */
+.video-card__thumbnail {
+    display: grid;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    aspect-ratio: 16 / 9;
+}
+
+.thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* 4. Detalhes Inferiores (Sub-grid Horizontal) */
+.video-card__details {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    /* Coluna do Avatar e coluna do Texto */
+    gap: 12px;
+}
+
+.video-card__avatar {
+    display: grid;
+    place-items: start center;
+}
+
+.avatar-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+/* 5. Bloco de Texto (Sub-grid de Informações) */
+.video-card__text {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 4px;
+}
+
+.video-title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #0f0f0f;
+    /* Limita o título a 2 linhas */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta,
+.video-stats {
+    font-size: 14px;
+    color: #606060;
+}
+
+.video-stats {
+    display: grid;
+    grid-auto-flow: column;
+    /* Coloca os itens das stats em linha via grid */
+    grid-auto-columns: max-content;
+    gap: 4px;
+}
